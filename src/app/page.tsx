@@ -17,6 +17,7 @@ import { Sidebar } from '@/components/layout/Sidebar';
 import { DraftChat } from '@/components/draft/DraftChat';
 import { SkillDocument } from '@/components/draft/SkillDocument';
 import { IntegrationsPanel } from '@/components/IntegrationsPanel';
+import { SopUploadPanel } from '@/components/SopUploadPanel';
 
 export default function Home() {
   const [conversations, setConversations] = useState<StoredConversation[]>([]);
@@ -27,7 +28,7 @@ export default function Home() {
   const [copyState, setCopyState] = useState<'idle' | 'copied'>('idle');
   const [mounted, setMounted] = useState(false);
   const [onboardingProfile, setOnboardingProfile] = useState<OnboardingProfile | null>(null);
-  const [activeView, setActiveView] = useState<'skill' | 'integrations'>('skill');
+  const [activeView, setActiveView] = useState<'skill' | 'integrations' | 'sop'>('skill');
 
   useEffect(() => {
     setMounted(true);
@@ -58,8 +59,25 @@ export default function Home() {
     setOnboardingProfile(profile);
   }
 
-  function handleViewChange(view: 'skill' | 'integrations') {
+  function handleViewChange(view: 'skill' | 'integrations' | 'sop') {
     setActiveView(view);
+  }
+
+  function handleSopSkillsCreated(skills: Skill[]) {
+    const newConvs = skills.map((skill) => {
+      const conv = createNewConversation();
+      const updated = { ...conv, title: skill.name, skill, status: 'draft' as SkillStatus };
+      saveConversation(updated);
+      return updated;
+    });
+    setConversations((prev) => [...newConvs, ...prev]);
+    // Select the first created skill and switch to skill view
+    if (newConvs.length > 0) {
+      setActiveId(newConvs[0].id);
+      setCurrentSkill(newConvs[0].skill);
+      setCurrentStatus('draft');
+      setActiveView('skill');
+    }
   }
 
   // ── Conversation management ────────────────────────────────────────────────
@@ -203,6 +221,10 @@ export default function Home() {
             isFirstTime={!onboardingProfile}
             onChange={handleIntegrationsChange}
           />
+        </div>
+      ) : activeView === 'sop' ? (
+        <div className="flex flex-1 flex-col overflow-hidden">
+          <SopUploadPanel onSkillsCreated={handleSopSkillsCreated} />
         </div>
       ) : (
         <>

@@ -5,11 +5,11 @@ import type { StoredConversation } from '@/lib/storage';
 interface Props {
   conversations: StoredConversation[];
   activeId: string | null;
-  activeView: 'skill' | 'integrations';
+  activeView: 'skill' | 'integrations' | 'sop';
   onSelect: (id: string) => void;
   onNew: () => void;
   onDelete: (id: string) => void;
-  onViewChange: (view: 'skill' | 'integrations') => void;
+  onViewChange: (view: 'skill' | 'integrations' | 'sop') => void;
   storedIntegrationCount: number;
 }
 
@@ -86,6 +86,7 @@ function SidebarItem({
 export function Sidebar({
   conversations, activeId, activeView, onSelect, onNew, onDelete, onViewChange, storedIntegrationCount,
 }: Props) {
+
   const published = conversations.filter((c) => c.status === 'published' && c.skill);
   const drafts = conversations.filter((c) => c.status === 'draft' && c.skill);
   const inProgress = conversations.filter((c) => !c.skill);
@@ -110,6 +111,22 @@ export function Sidebar({
             <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
           </svg>
           New skill
+        </button>
+
+        {/* Upload SOP */}
+        <button
+          onClick={() => onViewChange('sop')}
+          className={`flex w-full cursor-pointer items-center gap-2.5 rounded-[6px] px-3 py-2 text-left transition-colors ${
+            activeView === 'sop' ? 'bg-white/10' : 'hover:bg-white/8'
+          }`}
+        >
+          <svg className="h-4 w-4 shrink-0 text-white/40" fill="none" viewBox="0 0 16 16">
+            <path d="M8 2v8M5 7l3-3 3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M3 11v1a1 1 0 001 1h8a1 1 0 001-1v-1" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+          </svg>
+          <span className={`text-[13px] font-medium ${activeView === 'sop' ? 'text-white' : 'text-white/60'}`}>
+            Upload SOP
+          </span>
         </button>
 
         {/* Integrations tab */}
