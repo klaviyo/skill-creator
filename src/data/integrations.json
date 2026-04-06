@@ -1,0 +1,23 @@
+[
+  { "name": "Shopify",       "url": "https://marketplace.klaviyo.com/en-us/apps/01h3z8tkt4fdj8yzwenj89077h/", "category": "eCommerce",     "docsUrl": "https://shopify.dev/docs/api" },
+  { "name": "WooCommerce",   "url": "https://marketplace.klaviyo.com/en-us/apps/01h3z8tqfjwpfh8rder1nyyym2/", "category": "eCommerce",     "docsUrl": "https://developer.woocommerce.com/docs/apis/rest-api/" },
+  { "name": "BigCommerce",   "url": "https://marketplace.klaviyo.com/en-us/apps/01h3z8tnqd4srx0fvqb1nex3wh/", "category": "eCommerce",     "docsUrl": "https://developer.bigcommerce.com/docs/api" },
+  { "name": "Magento 2",     "url": "https://marketplace.klaviyo.com/en-us/apps/01h3z8tnqd4srx0fvqb1nex3wh/", "category": "eCommerce",     "docsUrl": "https://developer.adobe.com/commerce/webapi/rest/" },
+  { "name": "Gorgias",       "url": "https://marketplace.klaviyo.com/en-us/apps/01h3z8tqfjwpfh8rder1nyyym2/", "category": "Helpdesk",      "docsUrl": "https://developers.gorgias.com/" },
+  { "name": "Zendesk",       "url": "https://marketplace.klaviyo.com/en-us/apps/01h3z8tvxmgr26s1xg2ffrkcey/", "category": "Helpdesk",      "docsUrl": "https://developer.zendesk.com/api-reference" },
+  { "name": "ReCharge",      "url": "https://marketplace.klaviyo.com/en-us/apps/01h3z8tsdym302n86d62g2w5k0/", "category": "Subscriptions", "docsUrl": "https://developer.rechargepayments.com/2021-11" },
+  { "name": "Skio",          "url": "https://marketplace.klaviyo.com/en-us/apps/01h3z8tkt4fdj8yzwenj89077h/", "category": "Subscriptions", "docsUrl": "https://code.skio.com/" },
+  { "name": "AfterShip",     "url": "https://marketplace.klaviyo.com/en-us/apps/01h3z8tkt4fdj8yzwenj89077h/", "category": "Shipping",      "docsUrl": "https://www.aftership.com/docs" },
+  { "name": "ShipStation",   "url": "https://marketplace.klaviyo.com/en-us/apps/01h3z8tkt4fdj8yzwenj89077h/", "category": "Shipping",      "docsUrl": "https://help.shipstation.com/hc/en-us/articles/360025856212-ShipStation-API" },
+  { "name": "Loop Returns",  "url": "https://marketplace.klaviyo.com/en-us/apps/loop-returns/",                "category": "Returns",       "docsUrl": "https://docs.loopreturns.com/reference/introduction" },
+  { "name": "Yotpo",         "url": "https://marketplace.klaviyo.com/en-us/apps/01h3z8tkt4fdj8yzwenj89077h/", "category": "Reviews",       "docsUrl": "https://develop.yotpo.com/reference/getting-started-1" },
+  { "name": "Judge.me",      "url": "https://marketplace.klaviyo.com/en-us/apps/01h3z8tkt4fdj8yzwenj89077h/", "category": "Reviews",       "docsUrl": "https://judge.me/api/docs" },
+  { "name": "Stamped.io",    "url": "https://marketplace.klaviyo.com/en-us/apps/01h3z8tkt4fdj8yzwenj89077h/", "category": "Reviews",       "docsUrl": "https://developers.stamped.io/" },
+  { "name": "Smile.io",      "url": "https://marketplace.klaviyo.com/en-us/apps/01h3z8tkt4fdj8yzwenj89077h/", "category": "Loyalty",       "docsUrl": "https://dev.smile.io" },
+  { "name": "LoyaltyLion",   "url": "https://marketplace.klaviyo.com/en-us/apps/01h3z8tkt4fdj8yzwenj89077h/", "category": "Loyalty",       "docsUrl": "https://developers.loyaltylion.com/" },
+  { "name": "Typeform",      "url": "https://marketplace.klaviyo.com/en-us/apps/01h3z8tkt4fdj8yzwenj89077h/", "category": "Forms",         "docsUrl": "https://www.typeform.com/developers/" },
+  { "name": "Zapier",        "url": "https://marketplace.klaviyo.com/en-us/apps/01h3z8tkt4fdj8yzwenj89077h/", "category": "Automation",    "docsUrl": "https://docs.zapier.com/" },
+  { "name": "Triple Whale",  "url": "https://marketplace.klaviyo.com/en-us/apps/01h3z8tkt4fdj8yzwenj89077h/", "category": "Analytics",     "docsUrl": "https://triplewhale.readme.io/" },
+  { "name": "Okendo",        "url": "https://marketplace.klaviyo.com/en-us/apps/01h3z8tkt4fdj8yzwenj89077h/", "category": "Reviews",       "docsUrl": "https://docs.okendo.io/" },
+  { "name": "Postscript",    "url": "https://marketplace.klaviyo.com/en-us/apps/01h3z8tkt4fdj8yzwenj89077h/", "category": "SMS",           "docsUrl": "https://docs.postscript.io/reference/" }
+]
