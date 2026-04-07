@@ -35,7 +35,7 @@ export async function POST(req: Request) {
     selectedIntegrations.map(async (integration) => {
       const docsUrl = integration.docsUrl;
       if (!docsUrl) return [integration.name, ''] as [string, string];
-      const text = await searchIntegrationDocs(integration.name, docsUrl, intent);
+      const text = await searchIntegrationDocs(integration.name, docsUrl, intent, integration.description);
       return [integration.name, text] as [string, string];
     }),
   );

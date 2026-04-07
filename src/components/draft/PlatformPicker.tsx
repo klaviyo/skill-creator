@@ -67,6 +67,7 @@ export function PlatformPicker({
 }: Props) {
   const [nameInput, setNameInput] = useState('');
   const [urlInput, setUrlInput] = useState('');
+  const [descriptionInput, setDescriptionInput] = useState('');
   const [lookup, setLookup] = useState<LookupState>({ status: 'idle' });
 
   const customNames = new Set(customIntegrations.map((i) => i.name));
@@ -97,10 +98,17 @@ export function PlatformPicker({
     if (lookup.status !== 'needs-url') return;
     const url = urlInput.trim();
     if (!url) return;
-    const integration: Integration = { name: lookup.name, url, category: 'Custom', docsUrl: url };
+    const integration: Integration = {
+      name: lookup.name,
+      url,
+      category: 'Custom',
+      docsUrl: url,
+      description: descriptionInput.trim() || undefined,
+    };
     onAddCustom(integration);
     setNameInput('');
     setUrlInput('');
+    setDescriptionInput('');
     setLookup({ status: 'idle' });
   }
 
@@ -180,22 +188,30 @@ export function PlatformPicker({
             <p className="text-xs text-charcoal/60">
               Couldn&apos;t find docs for{' '}
               <span className="font-medium text-charcoal">{lookup.name}</span> automatically.
-              Paste their API docs URL:
             </p>
-            <form onSubmit={handleManualUrl} className="flex gap-2">
+            <form onSubmit={handleManualUrl} className="space-y-2">
               <input
-                type="url"
-                value={urlInput}
-                onChange={(e) => setUrlInput(e.target.value)}
-                placeholder="https://docs.example.com/api"
-                className="flex-1 rounded-[6px] border border-[rgba(0,0,0,0.1)] bg-white px-3 py-2 text-sm text-charcoal placeholder-charcoal/30 outline-none focus:border-navy/40 focus:ring-2 focus:ring-navy/10"
+                type="text"
+                value={descriptionInput}
+                onChange={(e) => setDescriptionInput(e.target.value)}
+                placeholder="What does it do? e.g. Manages loyalty points"
+                className="w-full rounded-[6px] border border-[rgba(0,0,0,0.1)] bg-white px-3 py-2 text-sm text-charcoal placeholder-charcoal/30 outline-none focus:border-navy/40 focus:ring-2 focus:ring-navy/10"
               />
-              <button type="submit" disabled={!urlInput.trim()} className="rounded-[6px] border border-[rgba(0,0,0,0.1)] bg-white px-3 py-2 text-sm font-semibold text-charcoal hover:border-navy/30 hover:text-navy disabled:opacity-40">
-                Add
-              </button>
-              <button type="button" onClick={() => { setLookup({ status: 'idle' }); setNameInput(''); }} className="text-xs text-charcoal/40 hover:text-charcoal/70">
-                Cancel
-              </button>
+              <div className="flex gap-2">
+                <input
+                  type="url"
+                  value={urlInput}
+                  onChange={(e) => setUrlInput(e.target.value)}
+                  placeholder="https://docs.example.com/api"
+                  className="flex-1 rounded-[6px] border border-[rgba(0,0,0,0.1)] bg-white px-3 py-2 text-sm text-charcoal placeholder-charcoal/30 outline-none focus:border-navy/40 focus:ring-2 focus:ring-navy/10"
+                />
+                <button type="submit" disabled={!urlInput.trim()} className="rounded-[6px] border border-[rgba(0,0,0,0.1)] bg-white px-3 py-2 text-sm font-semibold text-charcoal hover:border-navy/30 hover:text-navy disabled:opacity-40">
+                  Add
+                </button>
+                <button type="button" onClick={() => { setLookup({ status: 'idle' }); setNameInput(''); setDescriptionInput(''); }} className="text-xs text-charcoal/40 hover:text-charcoal/70">
+                  Cancel
+                </button>
+              </div>
             </form>
           </div>
         )}

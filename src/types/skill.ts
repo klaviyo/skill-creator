@@ -72,7 +72,8 @@ export interface Integration {
   name: string;
   url: string;
   category: string;
-  docsUrl?: string; // for custom integrations: the direct API docs URL
+  docsUrl?: string;
+  description?: string; // what this integration does — used to improve API endpoint search
 }
 
 export interface ChatMessage {

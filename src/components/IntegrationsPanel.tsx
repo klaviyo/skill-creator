@@ -53,6 +53,7 @@ export function IntegrationsPanel({ savedIntegrations, isFirstTime, onChange }: 
   // Custom integration form state
   const [customName, setCustomName] = useState('');
   const [customDocs, setCustomDocs] = useState('');
+  const [customDescription, setCustomDescription] = useState('');
   const [customError, setCustomError] = useState('');
 
   function notifyChange(nextSelected: Set<string>, nextCustom: Integration[]) {
@@ -84,13 +85,20 @@ export function IntegrationsPanel({ savedIntegrations, isFirstTime, onChange }: 
       setCustomError('Already added.');
       return;
     }
-    const integration: Integration = { name, url: docsUrl, category: CUSTOM_CATEGORY, docsUrl };
+    const integration: Integration = {
+      name,
+      url: docsUrl,
+      category: CUSTOM_CATEGORY,
+      docsUrl,
+      description: customDescription.trim() || undefined,
+    };
     const nextCustom = [...customIntegrations, integration];
     const nextSelected = new Set(selected).add(name);
     setCustomIntegrations(nextCustom);
     setSelected(nextSelected);
     setCustomName('');
     setCustomDocs('');
+    setCustomDescription('');
     setCustomError('');
     notifyChange(nextSelected, nextCustom);
   }
@@ -204,7 +212,10 @@ export function IntegrationsPanel({ savedIntegrations, isFirstTime, onChange }: 
                       >
                         <div className="min-w-0">
                           <p className="text-sm font-medium text-navy">{i.name}</p>
-                          <p className="truncate font-mono text-[11px] text-charcoal/40">{i.docsUrl}</p>
+                          {i.description && (
+                            <p className="truncate text-[11px] text-charcoal/50">{i.description}</p>
+                          )}
+                          <p className="truncate font-mono text-[11px] text-charcoal/30">{i.docsUrl}</p>
                         </div>
                         <button
                           onClick={() => removeCustom(i.name)}
@@ -233,6 +244,21 @@ export function IntegrationsPanel({ savedIntegrations, isFirstTime, onChange }: 
                       placeholder="e.g. Gorgias, Attentive, Klaviyo"
                       className="w-full rounded-[6px] border border-[rgba(0,0,0,0.1)] bg-cream px-3 py-2 text-sm text-charcoal placeholder-charcoal/30 outline-none focus:border-navy/30 focus:ring-2 focus:ring-navy/8"
                     />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-[11px] font-semibold uppercase tracking-widest text-charcoal/40">
+                      What does it do?
+                    </label>
+                    <input
+                      type="text"
+                      value={customDescription}
+                      onChange={(e) => { setCustomDescription(e.target.value); setCustomError(''); }}
+                      placeholder="e.g. Manages customer loyalty points and rewards"
+                      className="w-full rounded-[6px] border border-[rgba(0,0,0,0.1)] bg-cream px-3 py-2 text-sm text-charcoal placeholder-charcoal/30 outline-none focus:border-navy/30 focus:ring-2 focus:ring-navy/8"
+                    />
+                    <p className="mt-1 text-[11px] text-charcoal/40">
+                      Helps us find the right endpoints when building skills.
+                    </p>
                   </div>
                   <div>
                     <label className="mb-1 block text-[11px] font-semibold uppercase tracking-widest text-charcoal/40">

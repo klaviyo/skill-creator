@@ -13,7 +13,12 @@ export async function searchIntegrationDocs(
   integrationName: string,
   docsBaseUrl: string,
   intent: string,
+  integrationDescription?: string,
 ): Promise<string> {
+  const context = integrationDescription
+    ? `${integrationName} (${integrationDescription})`
+    : integrationName;
+
   try {
     const response = await openai.chat.completions.create({
       model: 'gpt-4o-search-preview',
@@ -21,7 +26,7 @@ export async function searchIntegrationDocs(
       messages: [
         {
           role: 'user',
-          content: `Using the ${integrationName} API documentation at ${docsBaseUrl}, find the specific API endpoint(s) needed to: ${intent}
+          content: `Using the ${context} API documentation at ${docsBaseUrl}, find the specific API endpoint(s) needed to: ${intent}
 
 Return a concise technical summary including:
 - The exact endpoint URL template (with {placeholder} syntax for dynamic values)
